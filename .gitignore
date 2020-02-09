@@ -1,0 +1,9 @@
+build
+dist
+herpetologist.egg-info
+.ipynb_checkpoints
+herpetologist/__pycache__
+*__pycache__
+*.DS_Store
+*Untitled*.ipynb
+test.ipynb
