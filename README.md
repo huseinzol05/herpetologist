@@ -44,9 +44,9 @@ pip install herpetologist
 ## how-to
 
 ```python
-from herpetologist import check_snake
+from herpetologist import check_type
 
-@check_snake
+@check_type
 def greeting(name: str):
     print(name)
 ```
@@ -58,7 +58,7 @@ class ClassA:
     def __init__(self):
         pass
 
-@check_snake
+@check_type
 def greeting(name: str, foo: ClassA):
     print(foo)
 ```
