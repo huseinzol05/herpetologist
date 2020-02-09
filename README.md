@@ -61,6 +61,15 @@ greeting((([{1: 'str'}],), ([1], [1]))) # no error
 greeting((([{1: 'str'}],), ([1], [1.1]))) # error
 ```
 
+```python
+@check_type
+def greeting(name: List[Dict[str, Dict[str, List[str]]]]):
+    pass
+    
+greeting([{'a': {'b': ['a', 'a']}}]) # no error
+greeting([{'a': {'b': ['a', 1]}}]) # error
+```
+
 #### Support custom types
 
 ```python
