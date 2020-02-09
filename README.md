@@ -23,8 +23,9 @@ There is existing library called [typeguard](https://typeguard.readthedocs.io/en
 ```python
 List[List[int]] # failed
 List[Tuple[int, float, str]] # failed
-Tuple(List[int, float], Tuple[float, float]) # failed
 Tuple[List[int], Tuple[List[int]]] # failed
+List[Dict[str, Dict[str, List[str]]]] # failed
+Tuple(List[int, float], Tuple[float, float]) # failed
 Tuple[Tuple[List[Dict[int, str]]], Tuple[List[int]]] # failed
 Tuple[Tuple[List[Dict[int, str]]], Tuple[List[int], str]] # failed
 ```
@@ -49,6 +50,15 @@ from herpetologist import check_type
 @check_type
 def greeting(name: str):
     print(name)
+```
+
+```python
+@check_type
+def greeting(name: Tuple[Tuple[List[Dict[int, str]]], Tuple[List[int]]]):
+    pass
+
+greeting((([{1: 'str'}],), ([1], [1]))) # no error
+greeting((([{1: 'str'}],), ([1], [1.1]))) # error
 ```
 
 #### Support custom types

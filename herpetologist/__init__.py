@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Dict, List, Tuple
 import inspect
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 
 def recursive_check(v, t):
@@ -30,14 +30,16 @@ def recursive_check(v, t):
             if t.__origin__ in [dict, Dict] and origin:
                 key_type = args[0]
                 value_type = args[1]
-                return all([isinstance(k, key_type) for k in v.keys()]) and all(
-                    [isinstance(k, value_type) for k in v.values()]
-                )
+                return all(
+                    [recursive_check(k, key_type) for k in v.keys()]
+                ) and all([recursive_check(k, value_type) for k in v.values()])
             else:
                 if not isinstance(v, (tuple, list, dict, set)):
                     return False
                 if len(args) == 1:
-                    return origin and all([isinstance(p, args[0]) for p in v])
+                    return origin and all(
+                        [recursive_check(p, args[0]) for p in v]
+                    )
                 if len(v) != len(args):
                     return False
                 if len(args) == len(v):
