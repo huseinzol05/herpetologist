@@ -1,6 +1,6 @@
 <p align="center">
     <a href="#readme">
-        <img alt="logo" width="40%" src="https://www.wikihow.com/images/thumb/7/7f/Become-a-Herpetologist-Step-1.jpg/aid1401844-v4-728px-Become-a-Herpetologist-Step-1.jpg.webp">
+        <img alt="logo" width="30%" src="https://www.wikihow.com/images/thumb/7/7f/Become-a-Herpetologist-Step-1.jpg/aid1401844-v4-728px-Become-a-Herpetologist-Step-1.jpg.webp">
     </a>
 </p>
 
