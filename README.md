@@ -91,6 +91,20 @@ def greeting(name: str, foo):
     print(foo)
 ```
 
+#### default value
+
+herpetologist will never checked default value, snake is a snake (concept from duck typing)!
+
+```python
+@check_type
+def greeting(name: List[Dict[str, Dict[str, List[str]]]] = None):
+    if name is None:
+        print('name is None!')
+    
+greeting([{'a': {'b': ['a', 'a']}}]) # no error
+greeting() # no error
+```
+
 ## example
 
 Simply read more at [example.ipynb](example.ipynb).

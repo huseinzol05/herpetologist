@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Dict, List, Tuple
 import inspect
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 
 
 def recursive_check(v, t):
@@ -57,11 +57,17 @@ def check_type(func):
 
     @wraps(func)
     def check(*args, **kwargs):
-        for v, p in zip(args, parameters):
+        def nested_check(v, p):
             t = annotations.get(p)
             if t:
                 if not recursive_check(v, t):
-                    raise Exception(f'{v} must be a {t}')
+                    raise Exception(f'"{p}" must be a {t}')
+
+        for v, p in zip(args, parameters):
+            nested_check(v, p)
+
+        for p, v in kwargs.items():
+            nested_check(v, p)
 
         return func(*args)
 
