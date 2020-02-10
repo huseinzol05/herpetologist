@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Dict, List, Tuple
 import inspect
 
-__version__ = '0.0.4'
+__version__ = '0.0.6'
 
 
 def recursive_check(v, t):
@@ -50,6 +50,14 @@ def recursive_check(v, t):
         return isinstance(v, t)
 
 
+def proper_text(string):
+
+    replaced = ['typing.', '<class ', '>', '__main__.']
+    for r in replaced:
+        string = string.replace(r, '')
+    return string
+
+
 def check_type(func):
     fullspec = inspect.getfullargspec(func)
     parameters = fullspec.args
@@ -61,11 +69,8 @@ def check_type(func):
             t = annotations.get(p)
             if t:
                 if not recursive_check(v, t):
-                    raise Exception(
-                        f'"{p}" must be a {t}'.replace('typing.', '')
-                        .replace('<class ', '')
-                        .replace('>', '')
-                        .replace('__main__.', '')
+                    raise TypeError(
+                        proper_text(f'type of argument "{p}" must be {t}')
                     )
 
         for v, p in zip(args, parameters):
