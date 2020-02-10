@@ -79,6 +79,6 @@ def check_type(func):
         for p, v in kwargs.items():
             nested_check(v, p)
 
-        return func(*args)
+        return func(*args, **kwargs)
 
     return check
