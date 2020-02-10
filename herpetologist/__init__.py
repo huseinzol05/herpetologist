@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Dict, List, Tuple
 import inspect
 
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 
 def recursive_check(v, t):
@@ -61,7 +61,12 @@ def check_type(func):
             t = annotations.get(p)
             if t:
                 if not recursive_check(v, t):
-                    raise Exception(f'"{p}" must be a {t}')
+                    raise Exception(
+                        f'"{p}" must be a {t}'.replace('typing.', '')
+                        .replace('<class ', '')
+                        .replace('>', '')
+                        .replace('__main__.', '')
+                    )
 
         for v, p in zip(args, parameters):
             nested_check(v, p)
