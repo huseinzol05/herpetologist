@@ -1,10 +1,12 @@
-from functools import wraps
+from functools import wraps, lru_cache
 from typing import Dict, List, Tuple
+from memoization import cached
 import inspect
 
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 
 
+@cached(max_size = 100_000)
 def recursive_check(v, t):
     if '__module__' in dir(t):
         if t.__module__ != 'typing':
