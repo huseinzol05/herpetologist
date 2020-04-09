@@ -6,7 +6,7 @@ __packagename__ = 'herpetologist'
 setuptools.setup(
     name = __packagename__,
     packages = setuptools.find_packages(),
-    version = '0.0.7',
+    version = '0.0.8',
     python_requires = '>=3.6.*',
     description = 'Dynamic parameter type checking for Python 3.6 and above. This able to detect deep nested variables.',
     author = 'huseinzol05',

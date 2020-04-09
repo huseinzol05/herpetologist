@@ -1,9 +1,10 @@
 from functools import wraps, lru_cache
 from typing import Dict, List, Tuple
 from memoization import cached
+import logging
 import inspect
 
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 
 @cached(max_size = 100_000)
@@ -71,8 +72,11 @@ def check_type(func):
             t = annotations.get(p)
             if t:
                 if not recursive_check(v, t):
+                    function = f"{func.__name__}({', '.join([p for p in parameters if p not in ['self']])})"
                     raise TypeError(
-                        proper_text(f'type of argument "{p}" must be {t}')
+                        proper_text(
+                            f'type of argument "{p}" from {function} must be {t}'
+                        )
                     )
 
         for v, p in zip(args, parameters):
