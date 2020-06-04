@@ -115,7 +115,7 @@ def plus(x: int):
     return int + 1
 ```
 
-Some of our environments we want to enable it, some of it also we want to disable, and we do not herpetologist want to keep check the variables. So to disable it, simply set bash environment,
+Some of our environments we want to enable it, some of it also we want to disable, and we do not want herpetologist to keep check the variables. So to disable it, simply set bash environment,
 
 ```bash
 export ENABLE_HERPETOLOGIST=false
