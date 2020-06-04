@@ -105,6 +105,31 @@ greeting([{'a': {'b': ['a', 'a']}}]) # no error
 greeting() # no error
 ```
 
+#### disable herpetologist using bash environment
+
+Let say we already have a code,
+
+```python
+@check_type
+def plus(x: int):
+    return int + 1
+```
+
+Some of our environments we want to enable it, some of it also we want to disable, and we do not herpetologist want to keep check the variables. So to disable it, simply set bash environment,
+
+```bash
+export ENABLE_HERPETOLOGIST=false
+```
+
+Or, using python,
+
+```python
+import os
+os.environ['ENABLE_HERPETOLOGIST'] = 'false'
+```
+
+**But again, this will disable entire herpetologist.**
+
 ## example
 
 Simply read more at [example.ipynb](example.ipynb).

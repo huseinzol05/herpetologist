@@ -3,8 +3,18 @@ from typing import Dict, List, Tuple
 from memoization import cached
 import logging
 import inspect
+import os
 
-__version__ = '0.0.8'
+__version__ = '0.0.9'
+
+
+def check_boolean_string(string):
+    return str(string).lower() in ['true', '1', 'enable']
+
+
+enable_check = check_boolean_string(
+    os.environ.get('ENABLE_HERPETOLOGIST', 'true')
+)
 
 
 @cached(max_size = 100_000)
@@ -79,11 +89,13 @@ def check_type(func):
                         )
                     )
 
-        for v, p in zip(args, parameters):
-            nested_check(v, p)
+        if enable_check:
 
-        for p, v in kwargs.items():
-            nested_check(v, p)
+            for v, p in zip(args, parameters):
+                nested_check(v, p)
+
+            for p, v in kwargs.items():
+                nested_check(v, p)
 
         return func(*args, **kwargs)
 
