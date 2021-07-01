@@ -32,7 +32,7 @@ Tuple[Tuple[List[Dict[int, str]]], Tuple[List[int], str]] # failed
 
 and list goes on, but this simple decorator `check_type` can helps you, any depth of nested and positions.
 
-But, who is going to pass that kind of variables in function parameters?
+Ya I know, who is going to pass that kind of variables in function parameters? Me!
 
 ## Installing from the PyPI
 
